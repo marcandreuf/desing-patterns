@@ -12,12 +12,12 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 public class LightningTest {
 
     private Light light;
-    private RemoteControl remoteLight;
+    private RemoteControl remoteControl;
 
     @Before
     public void setUp(){
         light = mock(Light.class);
-        remoteLight = new RemoteControl(
+        remoteControl = new RemoteControl(
                 new LightOnCmd(light),
                 new LightOffCmd(light),
                 new LightUpCmd(light),
@@ -27,26 +27,26 @@ public class LightningTest {
 
     @Test
     public void shouldTurnOnTheLight(){
-        remoteLight.On();
+        remoteControl.On();
         verify(light).on();
     }
 
 
     @Test
     public void shouldTurnOffTheLight(){
-        remoteLight.Off();
+        remoteControl.Off();
         verify(light).off();
     }
 
     @Test
     public void shouldDimUpTheLight(){
-        remoteLight.Up();
+        remoteControl.Up();
         verify(light).up();
     }
 
     @Test
     public void shouldDimDownTheLight(){
-        remoteLight.Down();
+        remoteControl.Down();
         verify(light).down();
     }
 
