@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.marcandreuf.katas</groupId>
+    <artifactId>desing-patterns</artifactId>
+    <version>1.0.0.0-SNAPSHOT</version>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <!-- Surefire plugin  -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>10</threadCount>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+        <project.build.targetVersion>1.8</project.build.targetVersion>
+        <project.build.sourceVersion>1.8</project.build.sourceVersion>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+        <buildTime>${maven.build.timestamp}</buildTime>
+
+        <!-- Dependencies version -->
+        <slf4j-api.version>1.7.20</slf4j-api.version>
+        <logback-classic.version>1.1.7</logback-classic.version>
+        <junit.version>4.12</junit.version>
+        <mockito-all.version>1.10.19</mockito-all.version>
+        <powermock-module-junit4.version>1.6.5</powermock-module-junit4.version>
+        <hamcrest-lib.version>1.3</hamcrest-lib.version>
+        <surefire-junit4.version>2.20</surefire-junit4.version>
+        <assertj-core.version>3.9.0</assertj-core.version>
+        <surefire-junit47.version>2.20.1</surefire-junit47.version>
+    </properties>
+
+    <dependencies>
+        <!-- Logging tools -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+        </dependency>
+
+        <!-- Used by Slf4j as a transitive dependency -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
+
+
+
+        <!--  ................  Testing scope  ...............   -->
+
+        <!-- Unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>hamcrest-library</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Junit plugin ∫surefire-junit4 -->
+        <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit4</artifactId>
+            <version>${surefire-junit4.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Asserts library -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Mockito mocking test fwk -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-all.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Powermock static mocking fwk -->
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>${powermock-module-junit4.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>junit</artifactId>
+                    <groupId>junit</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>${powermock-module-junit4.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+
+    </dependencies>
+</project>
